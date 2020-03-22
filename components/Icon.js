@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
 export const KoroIcon = (props) =>{
 
-    let { icon = 'none', size = 'medium' } = props
+    let { icon = 'none', size = 'medium', onPress } = props
     let iconSize = {}
     let icons = {
         alert: {
@@ -42,12 +42,12 @@ export const KoroIcon = (props) =>{
     }
 
     return (
-        <View>
+        <TouchableWithoutFeedback onPress={onPress}>
             <Image 
                 style={{...iconSize}}
                 source={icons[icon].source}
             />
-        </View>
+        </TouchableWithoutFeedback>
     )
 }
 

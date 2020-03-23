@@ -8,7 +8,6 @@ import { KoroAlert } from './components/Alert';
 import { KoroProgress } from './components/Progress';
 import { KoroDropdown } from './components/Dropdown';
 import { KoroSelect } from './components/Select'
-import { KoroProgress } from './components/Progress'
 import { KoroBadge } from './components/Badge';
 import { KoroChip } from './components/Chip';
 
@@ -25,6 +24,7 @@ export default function App() {
       setProgressActive(false)
     }, 4000)
   }
+
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
@@ -68,6 +68,9 @@ export default function App() {
       <KoroChip 
         onDelete={(id) => Alert.alert('deleted ' + id)}
         />
+      <KoroSelect options={[1,2,3]} />
+      <KoroDropdown onSelect={(val) => setDs(val)} options={[1,2,3]} />
+      <Button title="alert selected value" onPress={() => alert(ds)} color='pink'/>
     </View>
   );
 }

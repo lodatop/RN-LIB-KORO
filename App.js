@@ -6,6 +6,7 @@ import { KoroModal } from './components/Modal';
 import { KoroIcon } from './components/Icon';
 import { KoroAlert } from './components/Alert';
 import { KoroProgress } from './components/Progress'
+import { KoroBadge } from './components/Badge';
 
 export default function App() {
   const [disabled, setDisabled] = useState(false)
@@ -55,6 +56,9 @@ export default function App() {
         />
       <Button title="Call Alert" onPress={()=> setCallAlert(true)} color="red" style={{width: 300}}/>
       <Button title="Load Progress" onPress={() => showProgress()} color='pink'/>
+      <KoroBadge value={1} showValue={true} badgeSize={25}>
+        <Text>Badge</Text>
+      </KoroBadge>
       <KoroProgress visible={progressActive}/>
     </View>
   );

@@ -5,13 +5,16 @@ import { KoroButton } from './components/Button'
 import { KoroModal } from './components/Modal';
 import { KoroIcon } from './components/Icon';
 import { KoroAlert } from './components/Alert';
-import { KoroProgress } from './components/Progress'
+import { KoroProgress } from './components/Progress';
+import { KoroDropdown } from './components/Dropdown';
+import { KoroSelect } from './components/Select'
 
 export default function App() {
   const [disabled, setDisabled] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const [callAlert, setCallAlert] = useState(false)
   const [progressActive, setProgressActive] = useState(false)
+  const [ds, setDs] = useState(1)
 
   const showProgress = () => {
     setProgressActive(true);
@@ -56,6 +59,9 @@ export default function App() {
       <Button title="Call Alert" onPress={()=> setCallAlert(true)} color="red" style={{width: 300}}/>
       <Button title="Load Progress" onPress={() => showProgress()} color='pink'/>
       <KoroProgress visible={progressActive}/>
+      <KoroSelect options={[1,2,3]} />
+      <KoroDropdown onSelect={(val) => setDs(val)} options={[1,2,3]} />
+      <Button title="alert select value" onPress={() => alert(ds)} color='pink'/>
     </View>
   );
 }

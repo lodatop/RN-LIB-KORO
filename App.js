@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import { StyleSheet, Button, Text, View, Alert } from 'react-native';
 
-import { KoroButton, KotoModal } from './components/Button'
+import { KoroButton } from './components/Button'
 import { KoroModal } from './components/Modal';
 import { KoroIcon } from './components/Icon';
+import { KoroAlert } from './components/Alert';
  
 export default function App() {
   const [disabled, setDisabled] = useState(false)
@@ -29,6 +30,7 @@ export default function App() {
             <Button title="boton normal" onPress={()=> setDisabled(!disabled)} color="red" style={{width: 300}}/>
           </View>
         </KoroModal>
+        <KoroAlert />
     </View>
   );
 }

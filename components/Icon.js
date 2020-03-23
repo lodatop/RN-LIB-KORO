@@ -3,7 +3,7 @@ import { View, Image, StyleSheet, TouchableWithoutFeedback } from 'react-native'
 
 export const KoroIcon = (props) =>{
 
-    let { icon = 'none', size = 'medium', onPress } = props
+    let { icon = 'none', size = 'medium', onPress, style, resizeMode } = props
     let iconSize = {}
     let icons = {
         alert: {
@@ -43,10 +43,13 @@ export const KoroIcon = (props) =>{
 
     return (
         <TouchableWithoutFeedback onPress={onPress}>
+            <View style={{...style}}>
             <Image 
+                resizeMode={resizeMode}
                 style={{...iconSize}}
                 source={icons[icon].source}
             />
+            </View>
         </TouchableWithoutFeedback>
     )
 }

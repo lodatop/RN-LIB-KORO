@@ -65,6 +65,9 @@ export default function App() {
         <Text>Badge</Text>
       </KoroBadge>
       <KoroProgress visible={progressActive}/>
+      <KoroChip 
+        onDelete={(id) => Alert.alert('deleted ' + id)}
+        />
     </View>
   );
 }

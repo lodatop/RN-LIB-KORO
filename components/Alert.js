@@ -1,12 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Alert } from 'react-native';
 
 import { KoroIcon } from './Icon'
 import { KoroButton } from './Button'
 import { KoroModal } from './Modal'
 
 
-export const KoroAlert = (props) =>{
+const KoroAlert = (props) =>{
 
     let {
         title = 'My default title', 
@@ -146,3 +146,10 @@ const styles = StyleSheet.create({
         color: 'black'
     }
 })
+
+KoroAlert.show = () => {
+    Alert.alert('Hello my friend')
+    console.log('it works')
+}
+
+export {KoroAlert};

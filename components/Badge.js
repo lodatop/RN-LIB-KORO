@@ -8,7 +8,9 @@ export const KoroBadge = (props) => {
         showValue = true, 
         fontSize = 10, 
         backgroundColor = styles.badge.backgroundColor, 
-        color = 'white' } = props
+        color = 'white',
+        containerStyle = {}
+    } = props
 
     let textStyle = {
         color,
@@ -53,7 +55,7 @@ export const KoroBadge = (props) => {
     }
     
     return (
-        <View style={styles.container}>
+        <View style={{...styles.container, ...containerStyle}}>
                 {props.children}
                 {badge}
         </View>

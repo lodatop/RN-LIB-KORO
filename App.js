@@ -15,7 +15,7 @@ export default function App() {
       <Text>Open up App.js to start working on your app!</Text>
       <Button title="Open Modal" onPress={()=> setModalOpen(true)} color="red" style={{width: 300}}/>
       <KoroIcon icon="alert"/>
-      <KoroModal visible={modalOpen} onRequestClose={()=> setModalOpen(false)}>
+      <KoroModal visible={modalOpen} borderStyle={{padding: 20}} onRequestClose={()=> setModalOpen(false)}>
         <KoroButton 
           title='Button'
           icon="alert"
@@ -24,7 +24,7 @@ export default function App() {
           // disabledBackgroundColor="yellow"
           // touchColor='green'
           textStyle={{color: 'white'}}
-          // buttonStyle={{backgroundColor: 'blue'}} 
+          buttonStyle={{paddingHorizontal: 30}} 
           onPress={() => Alert.alert("Hello my fridend")}
           onLongPress={() => Alert.alert("Hello im being long pressed")}/>
           <View style={{width: 200}}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 
 export const KoroIcon = (props) =>{
 
@@ -7,7 +7,7 @@ export const KoroIcon = (props) =>{
     let iconSize = {}
     let icons = {
         alert: {
-            source: require('../assets/koro_alert_medium.png')
+            source: require('../assets/koro_alert.png')
         },
         none: {
             source: {}
@@ -42,17 +42,18 @@ export const KoroIcon = (props) =>{
     }
 
     return (
-        <TouchableWithoutFeedback onPress={onPress}>
-            <View style={{...style}}>
+        <View style={{...styles.container ,...style}}>
             <Image 
                 resizeMode={resizeMode}
                 style={{...iconSize}}
                 source={icons[icon].source}
             />
-            </View>
-        </TouchableWithoutFeedback>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        marginHorizontal: 3
+    }
 })

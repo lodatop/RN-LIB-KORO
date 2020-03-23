@@ -4,7 +4,10 @@ import { StyleSheet, Button, Text, View, Alert } from 'react-native';
 import { KoroButton } from './components/Button'
 import { KoroModal } from './components/Modal';
 import { KoroIcon } from './components/Icon';
-import { KoroAlert }  from './components/Alert';
+import { KoroAlert } from './components/Alert';
+import { KoroProgress } from './components/Progress';
+import { KoroDropdown } from './components/Dropdown';
+import { KoroSelect } from './components/Select'
 import { KoroProgress } from './components/Progress'
 import { KoroBadge } from './components/Badge';
 import { KoroChip } from './components/Chip';
@@ -14,6 +17,7 @@ export default function App() {
   const [modalOpen, setModalOpen] = useState(false)
   const [callAlert, setCallAlert] = useState(false)
   const [progressActive, setProgressActive] = useState(false)
+  const [ds, setDs] = useState(1)
 
   const showProgress = () => {
     setProgressActive(true);
@@ -61,9 +65,6 @@ export default function App() {
         <Text>Badge</Text>
       </KoroBadge>
       <KoroProgress visible={progressActive}/>
-      <KoroChip 
-        onDelete={(id) => Alert.alert('deleted ' + id)}
-        />
     </View>
   );
 }

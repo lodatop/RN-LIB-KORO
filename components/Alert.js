@@ -6,7 +6,7 @@ import { KoroButton } from './Button'
 import { KoroModal } from './Modal'
 
 
-const KoroAlert = (props) =>{
+export const KoroAlert = (props) =>{
 
     let {
         title = 'My default title', 
@@ -146,10 +146,3 @@ const styles = StyleSheet.create({
         color: 'black'
     }
 })
-
-KoroAlert.show = () => {
-    Alert.alert('Hello my friend')
-    console.log('it works')
-}
-
-export {KoroAlert};

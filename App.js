@@ -40,7 +40,7 @@ export default function App() {
           // touchColor='green'
           textStyle={{color: 'white'}}
           buttonStyle={{paddingHorizontal: 30}} 
-          onPress={() => KoroAlert.show()}
+          onPress={() => Alert.alert('Hello my friend')}
           onLongPress={() => Alert.alert("Hello im being long pressed")}/>
           <View style={{width: 200}}>
             <Button title="boton normal" onPress={()=> setDisabled(!disabled)} color="red" style={{width: 300}}/>

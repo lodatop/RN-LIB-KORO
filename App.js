@@ -4,9 +4,10 @@ import { StyleSheet, Button, Text, View, Alert } from 'react-native';
 import { KoroButton } from './components/Button'
 import { KoroModal } from './components/Modal';
 import { KoroIcon } from './components/Icon';
-import { KoroAlert } from './components/Alert';
+import { KoroAlert }  from './components/Alert';
 import { KoroProgress } from './components/Progress'
 import { KoroBadge } from './components/Badge';
+import { KoroChip } from './components/Chip';
 
 export default function App() {
   const [disabled, setDisabled] = useState(false)
@@ -35,7 +36,7 @@ export default function App() {
           // touchColor='green'
           textStyle={{color: 'white'}}
           buttonStyle={{paddingHorizontal: 30}} 
-          onPress={() => Alert.alert("Hello my fridend")}
+          onPress={() => KoroAlert.show()}
           onLongPress={() => Alert.alert("Hello im being long pressed")}/>
           <View style={{width: 200}}>
             <Button title="boton normal" onPress={()=> setDisabled(!disabled)} color="red" style={{width: 300}}/>
@@ -60,6 +61,9 @@ export default function App() {
         <Text>Badge</Text>
       </KoroBadge>
       <KoroProgress visible={progressActive}/>
+      <KoroChip 
+        onDelete={(id) => Alert.alert('deleted ' + id)}
+        />
     </View>
   );
 }

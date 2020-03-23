@@ -3,16 +3,18 @@ import { View, Image, StyleSheet } from 'react-native';
 
 export const KoroIcon = (props) =>{
 
-    let { icon = 'none', size = 'medium', onPress, style, resizeMode } = props
+    let { icon = 'none', size = 'small', onPress, style, resizeMode } = props
     let iconSize = {}
     let icons = {
         alert: {
             source: require('../assets/koro_alert.png')
         },
-        none: {
-            source: {}
+        clear: {
+            source: require('../assets/koro_clear.png')
         }
     }
+
+    let finalIcon = null;
 
     if(!icons[icon]){
         icon = "none"
@@ -21,8 +23,8 @@ export const KoroIcon = (props) =>{
         iconSize = null
     } else if(size === 'small'){
         iconSize = {
-            width: 1,
-            height: 1
+            width: 20,
+            height: 20
         }
     } else if(size === 'medium'){
         iconSize = {
@@ -34,20 +36,38 @@ export const KoroIcon = (props) =>{
             width: 3,
             height: 3
         }
+    } else if(typeof size == 'number') {
+        iconSize = {
+            width: size,
+            height: size
+        }
+    } else if(typeof size == 'object') {
+        iconSize = {
+            ...size
+        }
     } else {
         iconSize = {
-            width: 40,
-            height: 40
+            width: 20,
+            height: 20
         }
+    }
+    
+
+    if(icons[icon]){
+        finalIcon = (
+            <View style={{...styles.container ,...style}}>
+                <Image 
+                    resizeMode={resizeMode}
+                    style={{...iconSize}}
+                    source={icons[icon].source}
+                />
+            </View>
+        )
     }
 
     return (
-        <View style={{...styles.container ,...style}}>
-            <Image 
-                resizeMode={resizeMode}
-                style={{...iconSize}}
-                source={icons[icon].source}
-            />
+        <View>
+            {finalIcon}
         </View>
     )
 }

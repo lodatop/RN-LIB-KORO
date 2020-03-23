@@ -1,52 +1,80 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-import {KoroIcon} from './Icon'
+import { KoroIcon } from './Icon'
+import { KoroButton } from './Button'
+import { KoroModal } from './Modal'
+
 
 export const KoroAlert = (props) =>{
 
     let {
         title = 'My default title', 
         message = 'My default message', 
-        buttons, 
-        confirmText = 'OK', 
-        cancelText = 'CANCEL', 
-        icon = 'alert'
+        confirmButton = {},
+        cancelButton = null, 
+        icon = 'alert',
+        visible = false,
+        onClose,
+        onAccept
     } = props
 
-    let Buttons = (
+    let { confirmText = 'OK' } = props.confirmButton;
+
+    const closeAlert = () => {
+        visible = false
+    }
+
+    let buttons = null;
+
+    if(!cancelButton) {
+        buttons = (
         <View style={{...styles.bottomPart}}>
-            <TouchableOpacity style={styles.alertMessageButtonStyle}>
-                <Text style={styles.alertMessageButtonTextStyle} >
-                    {cancelText}
-                </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.alertMessageButtonStyle}>
-                <Text style={styles.alertMessageButtonTextStyle} >
-                    {confirmText}
-                </Text>
-            </TouchableOpacity>
+            <KoroButton
+                {...confirmButton} 
+                buttonStyle={{...styles.alertMessageButtonStyle, ...confirmButton.style}}
+                title={confirmText}
+                />
         </View>
-    );
+        )
+    }else{
+        let { cancelText = 'DISMISS' } = props.cancelButton;
+        buttons = (
+        <View style={{...styles.bottomPart}}>
+            <KoroButton
+                {...cancelButton}
+                title={cancelText}
+                buttonStyle={{...styles.alertMessageButtonStyle, ...cancelButton.style}}
+                />
+            <KoroButton
+                {...confirmButton} 
+                buttonStyle={{...styles.alertMessageButtonStyle, ...confirmButton.style}}
+                title={confirmText}
+                />
+        </View>
+        )
+    }
 
     return (
-        <View style={{...styles.mainContainer}}>
-            {/*Top*/}
-            <View style={{...styles.topPart}}>
-                <KoroIcon style={styles.alertIconStyle} icon={icon} resizeMode='contain'/>                
-                <Text style={styles.alertTitleStyle}>
-                    {title}
-                </Text>
+        <KoroModal visible={visible}>
+            <View style={{...styles.mainContainer}}>
+                {/*Top*/}
+                <View style={{...styles.topPart}}>
+                    <KoroIcon style={styles.alertIconStyle} icon={icon} resizeMode='contain'/>                
+                    <Text style={styles.alertTitleStyle}>
+                        {title}
+                    </Text>
+                </View>
+                {/*middle*/}
+                <View style={{...styles.middlePart}}>
+                    <Text style={styles.alertMessageTextStyle}>
+                        {message}
+                    </Text>
+                </View>
+                {/*Bottom*/}
+                {buttons}
             </View>
-            {/*middle*/}
-            <View style={{...styles.middlePart}}>
-                <Text style={styles.alertMessageTextStyle}>
-                    {message}
-                </Text>
-            </View>
-            {/*Bottom*/}
-            {Buttons}
-        </View>
+        </KoroModal>
     )
 }
 
@@ -57,24 +85,17 @@ const styles = StyleSheet.create({
         width: '80%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#404040',
-        borderWidth: 2,
-        borderColor: '#FF0000',
-        borderRadius: 10,
+        backgroundColor: 'white',
+        borderRadius: 5,
+        elevation: 10,
         padding: 4
-    },
-    alertIconStyle: {
-        // borderWidth: 1,
-        borderColor: '#cc00cc'
     },
     alertTitleStyle: {
         flex: 1,
         textAlign: 'center',
-        color: '#FFFFFF',
+        color: 'black',
         fontSize: 18,
         fontWeight: 'bold',
-        borderWidth: 1,
-        borderColor: '#660066',
         padding: 2,
         marginHorizontal: 2
     },
@@ -83,16 +104,14 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#00FF00',
         paddingHorizontal: 2,
-        paddingVertical: 4
+        paddingVertical: 4,
+        borderBottomWidth: 1,
+        borderBottomColor: 'black'
     },
     middlePart: {
         flex: 1,
         width: '100%',
-        borderWidth: 1,
-        borderColor: '#FF6600',
         alignItems: 'center',
         textAlignVertical: 'center',
         padding: 4,
@@ -101,7 +120,7 @@ const styles = StyleSheet.create({
         marginVertical: 2
     },
     alertMessageTextStyle: {
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'justify',
         fontSize: 16,
         padding: 2,
@@ -109,24 +128,21 @@ const styles = StyleSheet.create({
     bottomPart: {
         flex: 0.5,
         width: '100%',
-        borderWidth: 1,
-        borderColor: '#0066FF',
         flexDirection: 'row',
-        padding: 4,
-        justifyContent: 'space-evenly'
+        padding: 0,
+        justifyContent: 'flex-end',
+        overflow: 'hidden'
     },
     alertMessageButtonStyle: {
-        width: '40%',
+        width: '20%',
         paddingHorizontal: 6,
-        marginVertical: 4,
-        borderRadius: 10,
-        backgroundColor: '#80bfff',
+        backgroundColor: 'transparent',
         justifyContent: 'center',
         alignItems: 'center'
     },
     alertMessageButtonTextStyle:{
         fontSize: 14,
         fontWeight: 'bold',
-        color: '#ffffff'
+        color: 'black'
     }
 })

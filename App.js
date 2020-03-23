@@ -9,6 +9,7 @@ import { KoroAlert } from './components/Alert';
 export default function App() {
   const [disabled, setDisabled] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
+  const [callAlert, setCallAlert] = useState(false)
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
@@ -23,14 +24,27 @@ export default function App() {
           // disabledBackgroundColor="yellow"
           // touchColor='green'
           textStyle={{color: 'white'}}
-          buttonStyle={{backgroundColor: 'blue'}} 
+          // buttonStyle={{backgroundColor: 'blue'}} 
           onPress={() => Alert.alert("Hello my fridend")}
           onLongPress={() => Alert.alert("Hello im being long pressed")}/>
           <View style={{width: 200}}>
             <Button title="boton normal" onPress={()=> setDisabled(!disabled)} color="red" style={{width: 300}}/>
           </View>
         </KoroModal>
-        <KoroAlert />
+        <KoroAlert
+          visible={callAlert}
+          confirmButton={{
+            onPress: () => setCallAlert(false)
+            ,
+            textStyle: {
+              color: 'black'
+            }
+          }}
+          cancelButton={{
+            onPress: ()=> setCallAlert(false)
+          }}
+        />
+      <Button title="Call Alert" onPress={()=> setCallAlert(true)} color="red" style={{width: 300}}/>
     </View>
   );
 }
@@ -38,6 +52,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    zIndex: 100,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',

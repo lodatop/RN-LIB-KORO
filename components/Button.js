@@ -5,12 +5,22 @@ import {KoroIcon} from './Icon'
 export const KoroButton = (props) =>{
 
     let disabledStyle = null
-    let { onPress, onPressIn, onPressOut, onLongPress, title = '', disabled, 
-        buttonStyle, textStyle, touchColor, disabledBackgroundColor, disabledColor, icon } = props;
+    let { onPress, 
+        onPressIn, 
+        onPressOut, 
+        onLongPress, 
+        title = '', 
+        disabled = false, 
+        buttonStyle = {...styles.container}, 
+        textStyle, 
+        touchColor = 'rgba(0,0,0,0.2)', 
+        disabledBackgroundColor, 
+        disabledColor, 
+        icon
+    } = props;
 
-    const [backgroundColor, setBackgroundColor] = useState(buttonStyle.backgroundColor);
+    const [pressedStyle, setPressedStyle] = useState({});
 
-    if (!touchColor) touchColor = "rgba(10,38,255,0.8)";
     if (disabled) {
         disabledStyle = {
             backgroundColor: disabledBackgroundColor  || 'grey',
@@ -21,14 +31,16 @@ export const KoroButton = (props) =>{
     }
 
     const onPressInHandler = () =>{
-        setBackgroundColor(touchColor);
+        setPressedStyle(
+            {width: 500, height: 500, position: 'absolute', top: 0, left: 0, backgroundColor: touchColor, zIndex: 200}
+            );
         if (onPressIn){
             onPressIn();
         }
     }
 
     const onPressOutHandler = () =>{
-        setBackgroundColor(props.buttonStyle.backgroundColor);
+        setPressedStyle({});
         if (onPressOut){
             onPressOut();
         }
@@ -37,7 +49,8 @@ export const KoroButton = (props) =>{
     return (
         <TouchableWithoutFeedback {...props} onPressIn={onPressInHandler} onPressOut={onPressOutHandler} 
             onPress={onPress} onLongPress={onLongPress} disabled={disabled}>
-            <View style={{...styles.container, ...buttonStyle, backgroundColor: backgroundColor, ...disabledStyle}}>
+            <View style={{...styles.container, ...buttonStyle, ...disabledStyle}}>
+                <View style={{...pressedStyle}}></View>
                 <KoroIcon icon={icon}/>
                 <Text style={{ ...styles.text, ...textStyle }}>{ title }</Text>
             </View >
@@ -48,7 +61,6 @@ export const KoroButton = (props) =>{
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        borderWidth: 1,
         alignItems: 'center',
         justifyContent: "center",
         backgroundColor: 'blue',
@@ -58,7 +70,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 15,
-        color: 'white',
+        color: 'black',
         textTransform: 'uppercase',
         fontWeight: 'normal'
     }

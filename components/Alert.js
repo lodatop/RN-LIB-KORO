@@ -56,7 +56,7 @@ export const KoroAlert = (props) =>{
     }
 
     return (
-        <KoroModal visible={visible}>
+        <KoroModal visible={visible} contentStyle={{backgroundColor: "transparent"}}>
             <View style={{...styles.mainContainer}}>
                 {/*Top*/}
                 <View style={{...styles.topPart}}>

@@ -5,11 +5,20 @@ import { KoroButton } from './components/Button'
 import { KoroModal } from './components/Modal';
 import { KoroIcon } from './components/Icon';
 import { KoroAlert } from './components/Alert';
- 
+import { KoroProgress } from './components/Progress'
+
 export default function App() {
   const [disabled, setDisabled] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const [callAlert, setCallAlert] = useState(false)
+  const [progressActive, setProgressActive] = useState(false)
+
+  const showProgress = () => {
+    setProgressActive(true);
+    setTimeout(()=>{
+      setProgressActive(false)
+    }, 4000)
+  }
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
@@ -45,6 +54,8 @@ export default function App() {
           }}
         />
       <Button title="Call Alert" onPress={()=> setCallAlert(true)} color="red" style={{width: 300}}/>
+      <Button title="Load Progress" onPress={() => showProgress()} color='pink'/>
+      <KoroProgress visible={progressActive}/>
     </View>
   );
 }

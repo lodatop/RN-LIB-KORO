@@ -76,7 +76,9 @@ export default function App() {
       <KoroDropdown onSelect={(val) => setDs(val)} options={[1,2,3]} />
       <Button title="alert selected value" onPress={() => alert(ds)} color='pink'/>
       <KoroInput label='pipi' onChange={(text) => setDs(text)} />
-      <KoroSteps />
+      <KoroSteps 
+        steps={['im step number 1', 'im step number 2', 'im step number 3', 'im step number 4']}
+      />
     </View>
   );
 }

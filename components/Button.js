@@ -14,18 +14,20 @@ export const KoroButton = (props) =>{
         buttonStyle = {...styles.container}, 
         textStyle, 
         touchColor = 'rgba(0,0,0,0.2)', 
-        disabledBackgroundColor, 
-        disabledColor, 
-        icon
+        disabledBackgroundColor = 'lightgrey', 
+        disabledColor = 'black', 
+        icon,
+        iconPosition = 'end',
+        iconSize
     } = props;
 
     const [pressedStyle, setPressedStyle] = useState({});
 
     if (disabled) {
         disabledStyle = {
-            backgroundColor: disabledBackgroundColor  || 'grey',
+            backgroundColor: disabledBackgroundColor,
         }
-        textStyle.color = disabledColor || 'black'
+        textStyle = {...textStyle, color: disabledColor}  
     }else{
         disabledStyle = null
     }
@@ -45,17 +47,48 @@ export const KoroButton = (props) =>{
             onPressOut();
         }
     }
+    let button = null;
+    if(icon){
+        if(iconPosition === 'start') {
+            button = (
+                <TouchableWithoutFeedback {...props} onPressIn={onPressInHandler} onPressOut={onPressOutHandler} 
+                    onPress={onPress} onLongPress={onLongPress} disabled={disabled}>
+                    <View style={{...styles.container, ...buttonStyle, ...disabledStyle}}>
+                        <View style={{...pressedStyle}}></View>
+                        <KoroIcon icon={icon} size={iconSize}/>
+                        <Text style={{ ...styles.text, ...textStyle }}>{ title }</Text>
+                    </View >
+                </TouchableWithoutFeedback>
+            )
+        } else if(iconPosition === 'end') {
+            button = (
+                <TouchableWithoutFeedback {...props} onPressIn={onPressInHandler} onPressOut={onPressOutHandler} 
+                    onPress={onPress} onLongPress={onLongPress} disabled={disabled}>
+                    <View style={{...styles.container, ...buttonStyle, ...disabledStyle}}>
+                        <View style={{...pressedStyle}}></View>
+                        <Text style={{ ...styles.text, ...textStyle }}>{ title }</Text>
+                        <KoroIcon icon={icon} size={iconSize}/>
+                    </View >
+                </TouchableWithoutFeedback>
+            )
+        }
+    } else {
+        button = (
+            <TouchableWithoutFeedback {...props} onPressIn={onPressInHandler} onPressOut={onPressOutHandler} 
+                onPress={onPress} onLongPress={onLongPress} disabled={disabled}>
+                <View style={{...styles.container, ...buttonStyle, ...disabledStyle}}>
+                    <View style={{...pressedStyle}}></View>
+                    <Text style={{ ...styles.text, ...textStyle }}>{ title }</Text>
+                </View >
+            </TouchableWithoutFeedback>
+        )
+    }
 
     return (
-        <TouchableWithoutFeedback {...props} onPressIn={onPressInHandler} onPressOut={onPressOutHandler} 
-            onPress={onPress} onLongPress={onLongPress} disabled={disabled}>
-            <View style={{...styles.container, ...buttonStyle, ...disabledStyle}}>
-                <View style={{...pressedStyle}}></View>
-                <KoroIcon icon={icon}/>
-                <Text style={{ ...styles.text, ...textStyle }}>{ title }</Text>
-            </View >
-        </TouchableWithoutFeedback>
-    )
+        <View>
+            {button}
+        </View> 
+        )
 }
 
 const styles = StyleSheet.create({

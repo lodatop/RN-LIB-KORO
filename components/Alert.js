@@ -6,7 +6,7 @@ import { KoroButton } from './Button'
 import { KoroModal } from './Modal'
 
 
-const KoroAlert = (props) =>{
+export const KoroAlert = (props) =>{
 
     let {
         title = 'My default title', 
@@ -60,7 +60,7 @@ const KoroAlert = (props) =>{
             <View style={{...styles.mainContainer}}>
                 {/*Top*/}
                 <View style={{...styles.topPart}}>
-                    <KoroIcon style={styles.alertIconStyle} icon={icon} resizeMode='contain'/>                
+                    <KoroIcon style={styles.alertIconStyle} icon={icon} size="medium" resizeMode='contain'/>                
                     <Text style={styles.alertTitleStyle}>
                         {title}
                     </Text>
@@ -146,10 +146,3 @@ const styles = StyleSheet.create({
         color: 'black'
     }
 })
-
-KoroAlert.show = () => {
-    Alert.alert('Hello my friend')
-    console.log('it works')
-}
-
-export {KoroAlert};

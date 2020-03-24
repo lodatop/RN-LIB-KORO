@@ -7,6 +7,9 @@ import { KoroIcon } from './components/Icon';
 import { KoroAlert } from './components/Alert';
 import { KoroDropdown } from './components/Dropdown';
 import { KoroSelect } from './components/Select'
+=========
+import { KoroAlert }  from './components/Alert';
+>>>>>>>>> Temporary merge branch 2
 import { KoroProgress } from './components/Progress'
 import { KoroBadge } from './components/Badge';
 import { KoroChip } from './components/Chip';
@@ -25,6 +28,7 @@ export default function App() {
       setProgressActive(false)
     }, 4000)
   }
+
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
@@ -40,7 +44,7 @@ export default function App() {
           // touchColor='green'
           textStyle={{color: 'white'}}
           buttonStyle={{paddingHorizontal: 30}} 
-          onPress={() => KoroAlert.show()}
+          onPress={() => Alert.alert('Hello my friend')}
           onLongPress={() => Alert.alert("Hello im being long pressed")}/>
           <View style={{width: 200}}>
             <Button title="boton normal" onPress={()=> setDisabled(!disabled)} color="red" style={{width: 300}}/>
@@ -65,7 +69,9 @@ export default function App() {
         <Text>Badge</Text>
       </KoroBadge>
       <KoroProgress visible={progressActive}/>
-      <KoroChip 
+      <KoroChip
+        tags={[{title: 'Chip component', id: 1}, {title: 'Chip component 2', id: 2},
+              {title: 'Chip 3', id: 3}, {title: 'Francheesssscoooooo fiauuuuu', id: 4 }]}
         onDelete={(id) => Alert.alert('deleted ' + id)}
         />
       <KoroSelect options={[1,2,3]} />

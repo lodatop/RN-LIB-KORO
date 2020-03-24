@@ -1,31 +1,66 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
 import { KoroIcon } from './Icon';
 
 export const KoroChip = (props) => {
 
-    let { tagsArray, deletable, chipStyle, containerStyle, clearStyle, onDelete } = props
+    let { 
+        tags = [], 
+        pressable = false, 
+        deletable = true,
+        textStyle,
+        chipStyle, 
+        containerStyle, 
+        clearStyle, 
+        onDelete, 
+        onPress, 
+        iconColor = 'black'
+    } = props
+    let icon = iconColor === 'white' ? 'clearWhite' : 'clear'
 
-    let tags = [{title: 'Chip component', id: 1}, {title: 'Chip component 2', id: 2},
-    {title: 'Chip 3', id: 3}, {title: 'Francheesssscoooooo fiauuuuu', id: 4 }]
+    let chips = null;
 
-    let chips = (
-        tags.map(chip => {
-            return (
-                <View key={chip.id} style={styles.chip}>
-                    <Text style={styles.title}>{chip.title}</Text>
-                    <TouchableOpacity onPress={() => onDelete(chip.id)}>
-                        <View style={styles.clear}>
-                            <KoroIcon icon="clear" size={'small'}/>
+    if(deletable && !pressable){
+        chips = (
+            tags.map(chip => {
+                return (
+                    <View key={chip.id} style={{ ...styles.chip, ...chipStyle}}>
+                        <Text style={{...styles.title, ...textStyle}}>{chip.title}</Text>
+                        <TouchableOpacity onPress={() => onDelete(chip.id)}>
+                            <View style={{...styles.clear, clearStyle}}>
+                                <KoroIcon icon={icon} size={'small'}/>
+                            </View>
+                        </TouchableOpacity>
+                    </View> 
+                )
+            })
+        )
+    } else if (pressable){
+        chips = (
+            tags.map(chip => {
+                return (
+                    <TouchableOpacity onPress={onPress}>
+                        <View key={chip.id} style={{ ...styles.chip, ...chipStyle}}>
+                            <Text style={styles.title}>{chip.title}</Text>
                         </View>
                     </TouchableOpacity>
-                </View> 
-            )
-        })
-    )
+                )
+            })
+        )
+    } else {
+        chips = (
+            tags.map(chip => {
+                return (
+                    <View key={chip.id} style={{ ...styles.chip, ...chipStyle}}>
+                        <Text style={styles.title}>{chip.title}</Text>
+                    </View>
+                )
+            })
+        )
+    }
 
     return (
-            <View style={styles.container}>
+            <View style={{...styles.container, ...containerStyle}}>
                {chips} 
             </View>
     );
@@ -34,9 +69,7 @@ export const KoroChip = (props) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        flexWrap: 'wrap',
-        overflow: 'scroll',
-        height: 100,
+        flexWrap: 'wrap'
     },
     chip: {
         flexDirection: 'row',
@@ -57,6 +90,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         height: '100%',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        elevation: 5
     }
 });

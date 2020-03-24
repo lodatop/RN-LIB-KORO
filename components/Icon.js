@@ -21,6 +21,9 @@ export const KoroIcon = (props) =>{
         leftArrow: {
             source: require('../assets/koro_leftArrow.png')
         },
+        downArrow: {
+            source: require('../assets/koro_downArrow.png')
+        }
     }
 
     let finalIcon = null;

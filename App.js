@@ -63,7 +63,7 @@ export default function App() {
         <View style={styles.container}>
           <Text>Open up App.js to start working on your app!</Text>
           <KoroButton title="Open Modal" onPress={()=> setModalOpen(true)} style={{width: 300}}/>
-          <KoroIcon icon="alert"/>
+          <KoroIcon icon="downArrow"/>
           <KoroModal visible={modalOpen} borderStyle={{padding: 20}} onRequestClose={()=> setModalOpen(false)}>
             <KoroToast />
             <KoroButton 
@@ -118,10 +118,9 @@ export default function App() {
             steps={['im step number 1', 'im step number 2', 'im step number 3', 'im step number 4']}
           />
           <KoroButton title='Try toast' onPress={tryToast}/>
-          {/* <KoroTable tableTitle={tableTitle} /> */}
       </View>
       <KoroTable borderStyle={{borderWidth: 1}} tableTitle={tableTitle} tableHead={tableTitle} />
-      <KoroCollapse title='hey gurl'>
+      <KoroCollapse title="This is a collapse">
         <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
       </KoroCollapse>
     </ScrollView>

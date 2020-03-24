@@ -139,7 +139,7 @@ export default function App() {
           steps={['im step number 1', 'im step number 2', 'im step number 3', 'im step number 4']}
         />
       </View>
-      <KoroTable tableTitle={tableTitle} />
+      <KoroTable borderStyle={{borderWidth: 1}} tableTitle={tableTitle} tableHead={tableTitle} />
     </ScrollView>
     </View>
   );

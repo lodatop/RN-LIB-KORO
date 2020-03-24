@@ -115,11 +115,32 @@ export default function App() {
           <KoroSteps 
             steps={['im step number 1', 'im step number 2', 'im step number 3', 'im step number 4']}
           />
-          <KoroButton title="Try Toast" onPress={tryToast}/>
-        </View>
-      </ScrollView>
-        {toast}
-    </View>
+        <Button title="Call Alert" onPress={()=> setCallAlert(true)} color="red" style={{width: 300}}/>
+        <Button title="Load Progress" onPress={() => showProgress()} color='pink'/>
+        <KoroBadge value={1} showValue={true} badgeSize={25}>
+          <Text>Badge</Text>
+        </KoroBadge>
+        <KoroProgress visible={progressActive}/>
+        <KoroChip
+          tags={[{title: 'Chip component', id: 1}, {title: 'Chip component 2', id: 2},
+                {title: 'Chip 3', id: 3}, {title: 'Francheesssscoooooo fiauuuuu', id: 4 }]}
+          onDelete={(id) => Alert.alert('deleted ' + id)}
+          />
+        <KoroSelect options={[1,2,3]} />
+        <KoroDropdown onSelect={(val) => setDs(val)} options={[1,2,3]} />
+        <Button title="alert selected value" onPress={() => alert(ds)} color='pink'/>
+        <KoroInput label='pipi' onChange={(text) => setDs(text)} />
+        <KoroCard header={Header} footer={Footer}>
+        <Text>
+          hey bitch
+        </Text>
+      </KoroCard>
+        <KoroSteps 
+          steps={['im step number 1', 'im step number 2', 'im step number 3', 'im step number 4']}
+        />
+      </View>
+      <KoroTable tableTitle={tableTitle} />
+    </ScrollView>
   );
 }
 

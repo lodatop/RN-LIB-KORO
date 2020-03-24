@@ -11,6 +11,7 @@ import { KoroProgress } from './components/Progress'
 import { KoroBadge } from './components/Badge';
 import { KoroChip } from './components/Chip';
 import { KoroInput } from './components/Input';
+import { KoroSteps } from './components/Steps';
 
 export default function App() {
   const [disabled, setDisabled] = useState(false)
@@ -73,8 +74,9 @@ export default function App() {
         />
       <KoroSelect options={[1,2,3]} />
       <KoroDropdown onSelect={(val) => setDs(val)} options={[1,2,3]} />
-      <Button title="alert select value" onPress={() => alert(ds)} color='pink'/>
+      <Button title="alert selected value" onPress={() => alert(ds)} color='pink'/>
       <KoroInput label='pipi' onChange={(text) => setDs(text)} />
+      <KoroSteps />
     </View>
   );
 }

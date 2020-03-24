@@ -88,7 +88,6 @@ export const KoroTable = (props) => {
     
     const  cols  = renderCol()
     const row = renderRow()
-    console.log(renderRow())
     return (
     <View
         style={[

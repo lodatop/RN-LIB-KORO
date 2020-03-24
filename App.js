@@ -12,6 +12,7 @@ import { KoroBadge } from './components/Badge';
 import { KoroChip } from './components/Chip';
 import { KoroInput } from './components/Input';
 import { KoroSteps } from './components/Steps';
+import { KoroCard } from './components/Card';
 
 export default function App() {
   const [disabled, setDisabled] = useState(false)
@@ -26,6 +27,19 @@ export default function App() {
       setProgressActive(false)
     }, 4000)
   }
+
+  const Header = () => (
+    <View>
+      <Text style={[{fontSize: 30, fontWeight: 'bold'}]}>Title</Text>
+    </View>
+  );
+  
+  const Footer = () => (
+    <View >
+      <Button title="Open Modal" onPress={()=> setModalOpen(true)} color="red" style={{width: 300}}/>
+    </View>
+  );
+  
 
   return (
     <View style={styles.container}>
@@ -77,6 +91,11 @@ export default function App() {
       <Button title="alert selected value" onPress={() => alert(ds)} color='pink'/>
       <KoroInput label='pipi' onChange={(text) => setDs(text)} />
       <KoroSteps />
+      <KoroCard header={Header} footer={Footer}>
+      <Text>
+        hey bitch
+      </Text>
+    </KoroCard>
     </View>
   );
 }

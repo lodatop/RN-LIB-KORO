@@ -6,9 +6,6 @@ export const KoroInput = (props) => {
     const [value, setValue] = useState();
     const [focused, setFocused] = useState(false);
 
-    const handleOnSelect = (value) => {
-        setValue( value )
-    }
 
     const { onChange, style, label, disabled, placeholderTextColor } = props;
     
@@ -62,6 +59,7 @@ export const KoroInput = (props) => {
 
 const styles = StyleSheet.create({
   input: {
+    marginVertical: 5,
     alignSelf: 'stretch',
     textAlign: 'center',
     textAlign: "center",

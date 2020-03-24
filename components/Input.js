@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, Animated, View } from 'react-native';
 
 export const KoroInput = (props) => {
 
-    const [value, setValue] = useState();
+    const [value, setValue] = useState('');
     const [focused, setFocused] = useState(false);
 
 

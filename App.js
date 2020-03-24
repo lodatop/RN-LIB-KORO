@@ -141,6 +141,7 @@ export default function App() {
       </View>
       <KoroTable tableTitle={tableTitle} />
     </ScrollView>
+    </View>
   );
 }
 

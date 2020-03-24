@@ -11,6 +11,9 @@ export const KoroIcon = (props) =>{
         },
         clear: {
             source: require('../assets/koro_clear.png')
+        },
+        clearWhite: {
+            source: require('../assets/koro_clear_white.png')
         }
     }
 

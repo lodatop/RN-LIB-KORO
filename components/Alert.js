@@ -60,7 +60,7 @@ export const KoroAlert = (props) =>{
             <View style={{...styles.mainContainer}}>
                 {/*Top*/}
                 <View style={{...styles.topPart}}>
-                    <KoroIcon style={styles.alertIconStyle} icon={icon} resizeMode='contain'/>                
+                    <KoroIcon style={styles.alertIconStyle} icon={icon} size="medium" resizeMode='contain'/>                
                     <Text style={styles.alertTitleStyle}>
                         {title}
                     </Text>

@@ -65,7 +65,9 @@ export default function App() {
         <Text>Badge</Text>
       </KoroBadge>
       <KoroProgress visible={progressActive}/>
-      <KoroChip 
+      <KoroChip
+        tags={[{title: 'Chip component', id: 1}, {title: 'Chip component 2', id: 2},
+              {title: 'Chip 3', id: 3}, {title: 'Francheesssscoooooo fiauuuuu', id: 4 }]}
         onDelete={(id) => Alert.alert('deleted ' + id)}
         />
       <KoroSelect options={[1,2,3]} />

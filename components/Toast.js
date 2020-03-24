@@ -6,7 +6,9 @@ import {KoroModal} from './Modal';
 export const KoroToast = (props) => {
     const {time = 4000, position = 'bottom', title = 'KoroToast', style = {}} = props
     const [toast, setToast] = useState(null)
+    const [hideStyle, setHideStyle] = useState(null)
     let toastPosition = {}
+    // let hideStyle = {}
     if (position == 'bottom'){
         toastPosition = {
             position: 'absolute',
@@ -25,6 +27,13 @@ export const KoroToast = (props) => {
     }
 
     useEffect(() => visibleHandler(), []);
+    useEffect(() => {
+        if(!toast){
+            setHideStyle({width: 0, height: 0, padding: 0, margin: 0})
+        }else{
+            setHideStyle(null)
+        }
+    }, [toast])
 
     const visibleHandler = () => {
         setToast(
@@ -36,7 +45,7 @@ export const KoroToast = (props) => {
     }
     
     return (
-        <View style={{...styles.toastStyle, ...style, ...toastPosition}}>
+        <View style={{...styles.toastStyle, ...style, ...toastPosition, ...hideStyle}}>
             {toast}
         </View>    
     )

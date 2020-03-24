@@ -3,15 +3,17 @@ import { StyleSheet, Text, TextInput, Animated, View } from 'react-native';
 
 export const KoroInput = (props) => {
 
-    const [value, setValue] = useState();
+    const { onChange, style, label, disabled, placeholderTextColor, value = '' } = props;
+    
+    
+    const [inputValue, setInputValue] = useState(value);
     const [focused, setFocused] = useState(false);
 
 
-    const { onChange, style, label, disabled, placeholderTextColor } = props;
     
 
     const handleChange = (text) => {
-        setValue(text)
+        setInputValue(text)
         onChange(text)
     }
 
@@ -26,8 +28,8 @@ export const KoroInput = (props) => {
     const labelStyle = {
       position: 'absolute',
       left: 10,
-      top: (!focused && value == '') ? '30%' : 0,
-      fontSize: (!focused && value == '') ? 20 : 12,
+      top: (!focused && inputValue == '') ? '30%' : 0,
+      fontSize: (!focused && inputValue == '') ? 20 : 12,
       color: 'rgba(0,0,0,0.6)',
     };
 

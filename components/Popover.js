@@ -10,10 +10,8 @@ export const KoroPopover = (props) =>{
         if (onRequestClose) onRequestClose()
     }
 
-    var fullWidth = Dimensions.get('window').width;
-    var fullHeight = Dimensions.get('window').height;
     return (
-        <View style={[styles.backdrop], {width: fullWidth, height: fullHeight}} visible={visible}>
+        <View style={[styles.backdrop]} visible={visible}>
             <ScrollView>
                 <Modal {...props} transparent={transparent} animationType={animationType} visible={visible} onRequestClose={onRequestCloseHandler} animationType={animationType}>
                     <View style={{...styles.borderStyle, ...borderStyle}}>

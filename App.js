@@ -13,6 +13,7 @@ import { KoroChip } from './components/Chip';
 import { KoroInput } from './components/Input';
 import { KoroSteps } from './components/Steps';
 import { KoroCard } from './components/Card';
+import { KoroTable } from './components/Table';
 
 export default function App() {
   const [disabled, setDisabled] = useState(false)
@@ -39,6 +40,8 @@ export default function App() {
       <Button title="Open Modal" onPress={()=> setModalOpen(true)} color="red" style={{width: 300}}/>
     </View>
   );
+
+  const tableTitle = ['Title', 'Title2', 'Title3', 'Title4'];
   
 
   return (
@@ -61,6 +64,7 @@ export default function App() {
           <View style={{width: 200}}>
             <Button title="boton normal" onPress={()=> setDisabled(!disabled)} color="red" style={{width: 300}}/>
           </View>
+          
         </KoroModal>
         <KoroAlert
           visible={callAlert}

@@ -5,7 +5,7 @@ export const KoroDropdown = (props) => {
 
     const [value, setValue] = useState();
 
-    handleOnSelect = (value) => {
+    const handleOnSelect = (value) => {
         setValue( value )
         onSelect(value)
     }

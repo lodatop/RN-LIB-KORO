@@ -5,7 +5,7 @@ export const KoroSelect = (props) => {
 
     const [value, setValue] = useState();
 
-    handleOnSelect = (value) => {
+    const handleOnSelect = (value) => {
         setValue( value )
     }
 

@@ -36,19 +36,17 @@ export default function App() {
   );
   
   const Footer = () => (
-    <View >
-      <Button title="Open Modal" onPress={()=> setModalOpen(true)} color="red" style={{width: 300}}/>
-    </View>
+    <KoroButton title="Open Modal" onPress={()=> setModalOpen(true)} style={{width: 300}}/>
   );
 
   const tableTitle = ['Title', 'Title2', 'Title3', 'Title4'];
   
 
   return (
-    <ScrollView contentContainerStyle={{paddingVertical: 30}}>
+    <ScrollView contentContainerStyle={{paddingVertical: 30, flexGrow: 1}}>
       <View style={styles.container}>
         <Text>Open up App.js to start working on your app!</Text>
-        <Button title="Open Modal" onPress={()=> setModalOpen(true)} color="red" style={{width: 300}}/>
+        <KoroButton title="Open Modal" onPress={()=> setModalOpen(true)} style={{width: 300}}/>
         <KoroIcon icon="alert"/>
         <KoroModal visible={modalOpen} borderStyle={{padding: 20}} onRequestClose={()=> setModalOpen(false)}>
           <KoroButton 
@@ -62,9 +60,7 @@ export default function App() {
             buttonStyle={{paddingHorizontal: 30}} 
             onPress={() => Alert.alert('Hello my friend')}
             onLongPress={() => Alert.alert("Hello im being long pressed")}/>
-            <View style={{width: 200}}>
-              <Button title="boton normal" onPress={()=> setDisabled(!disabled)} color="red" style={{width: 300}}/>
-            </View>
+            <KoroButton title="Press to disable" onPress={()=> setDisabled(!disabled)} buttonStyle={{minWidth: 200, backgroundColor: 'red'}} textStyle={{color: 'white'}}/>
           </KoroModal>
           <KoroAlert
             visible={callAlert}
@@ -79,8 +75,8 @@ export default function App() {
               onPress: ()=> setCallAlert(false)
             }}
           />
-        <Button title="Call Alert" onPress={()=> setCallAlert(true)} color="red" style={{width: 300}}/>
-        <Button title="Load Progress" onPress={() => showProgress()} color='pink'/>
+        <KoroButton title="Call Alert" onPress={()=> setCallAlert(true)} buttonStyle={{backgroundColor: 'red', width: 200}}/>
+        <KoroButton title="Load Progress" onPress={() => showProgress()} buttonStyle={{backgroundColor: 'pink', width: 200}} />
         <KoroBadge value={1} showValue={true} badgeSize={25}>
           <Text>Badge</Text>
         </KoroBadge>
@@ -90,15 +86,17 @@ export default function App() {
                 {title: 'Chip 3', id: 3}, {title: 'Francheesssscoooooo fiauuuuu', id: 4 }]}
           onDelete={(id) => Alert.alert('deleted ' + id)}
           />
-        <KoroSelect options={[1,2,3]} />
+          <Text>Select</Text>
+        <KoroSelect options={[1,2,3]} onSelect={(selection) => Alert.alert("value selected: " + selection)}/>
+        <Text>Dropdown</Text>
         <KoroDropdown onSelect={(val) => setDs(val)} options={[1,2,3]} />
-        <Button title="alert selected value" onPress={() => alert(ds)} color='pink'/>
-        <KoroInput label='pipi' onChange={(text) => setDs(text)} />
+        <KoroButton title="alert selected value" onPress={() => alert(ds)} buttonStyle={{backgroundColor: 'pink', minWidth: 200}} textStyle={{color: 'white'}} />
+        <KoroInput label='select a name please' onChange={(text) => setDs(text)} />
         <KoroCard header={Header} footer={Footer}>
-        <Text>
-          hey bitch
-        </Text>
-      </KoroCard>
+          <Text>
+            hey bitch
+          </Text>
+        </KoroCard>
         <KoroSteps 
           steps={['im step number 1', 'im step number 2', 'im step number 3', 'im step number 4']}
         />

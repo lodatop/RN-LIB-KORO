@@ -30,6 +30,7 @@ export class KoroSteps extends Component {
     }
 
     componentDidMount(){
+        if(this.props.steps)
         this.setState((prevState) => ({
                 steps: this.props.steps, 
                 stepsLength: this.props.steps.length,
@@ -38,6 +39,7 @@ export class KoroSteps extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.props.steps)
         this.setState((prevState) => ({
             steps: this.props.steps, 
             stepsSize: this.props.steps.length
@@ -64,12 +66,11 @@ export class KoroSteps extends Component {
     }
 
     render(){
-        console.log(this.state.actualStep)
-
         let stepsArray = null
 
         let foregroundStyle = null
         let content = null
+        let stepsComponent = null
         
         if(this.state.steps){
             content = this.state.steps[this.state.actualStep - 1]
@@ -113,6 +114,31 @@ export class KoroSteps extends Component {
             )
         }
 
+        if(this.state.steps){
+            stepsComponent = (
+                <View style={styles.container}>
+                <View style={styles.top}>
+                    <View style={{...styles.barBackground}}></View>
+                    <View style={{...styles.barForeground, ...foregroundStyle, ...this.state.selectedStyle}}></View>
+                    {stepsArray}
+                </View>
+                <View style={styles.middle}>
+                    <Text>{content}</Text>
+                </View>
+                <View style={styles.bottom}>
+                    {/* <Text>Im the bottom</Text> */}
+                    <KoroButton disabled={this.state.backDisabled} title='Go Back' icon="leftArrow" iconPosition="start" iconSize={25} 
+                        onPress={() => this.goBack()}
+                        buttonStyle={{...styles.buttons, paddingLeft: 0}}/>
+                    <KoroButton disabled={this.state.continueDisabled} title='Continue' icon="rightArrow" iconSize={25}
+                        onPress={() => this.goFoward()}
+                        buttonStyle={{...styles.buttons, paddingRight: 0}}/>
+                    <KoroButton disabled={!this.state.continueDisabled} title='Done' buttonStyle={{...styles.buttons, paddingVertical: 11.5}}/>
+                </View>
+            </View>
+            )
+        }
+
         return (
             <View style={styles.container}>
                 <View style={styles.top}>
@@ -140,11 +166,12 @@ export class KoroSteps extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
+        flex: 1,
         width: '100%',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginVertical: 20
     },
     top: {
         width: '90%',

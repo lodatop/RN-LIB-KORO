@@ -66,8 +66,9 @@ const styles = StyleSheet.create({
     container: {
         padding: 10,
         marginTop: 20,
-        borderWidth:1,
-        overflow: 'visible'
+        borderWidth: 1,
+        overflow: 'visible',
+        borderRadius: 10
     },
     badge: {
         elevation: 15,

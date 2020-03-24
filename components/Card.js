@@ -21,7 +21,7 @@ export const KoroCard = (props) => {
 
     const renderBody = (style) => {
         return (
-          <View style={[styles.body, style]}>
+          <View style={{...styles.body, ...style}}>
             {props.children}
           </View>
         );

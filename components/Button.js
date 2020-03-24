@@ -96,9 +96,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: "center",
-        backgroundColor: 'blue',
+        borderRadius: 5,
+        backgroundColor: '#6897e3',
         minWidth: 100,
         padding: 10,
+        margin: 5,
         overflow: 'hidden'
     },
     text: {

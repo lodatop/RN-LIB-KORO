@@ -4,12 +4,9 @@ import { StyleSheet, Button, Text, View, Alert } from 'react-native';
 import { KoroButton } from './components/Button'
 import { KoroModal } from './components/Modal';
 import { KoroIcon } from './components/Icon';
-import { KoroAlert } from './components/Alert';
 import { KoroDropdown } from './components/Dropdown';
 import { KoroSelect } from './components/Select'
-=========
 import { KoroAlert }  from './components/Alert';
->>>>>>>>> Temporary merge branch 2
 import { KoroProgress } from './components/Progress'
 import { KoroBadge } from './components/Badge';
 import { KoroChip } from './components/Chip';

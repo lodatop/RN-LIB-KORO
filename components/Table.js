@@ -10,28 +10,55 @@ export const KoroTable = (props) => {
 
     const renderCol = () => {
         const { tableTitle, colStyle, heightArr, width, textStyle, borderStyle } = props;
-        
+        const height = (heightArr && heightArr[i]) || 'auto';
+        const cellWidth = (width) || 'auto';
+        const cellTextStyle = (textStyle) || {};
+        const cellBorderStyle = (borderStyle) || {};
+
         return tableTitle ? (
         <View style={[(colStyle && colStyle.width) ? { width: colStyle.width } : { flex: 1 }, colStyle]}>
             {tableTitle.map((item, i) => {
-            /*const height = (heightArr && heightArr[i]) || 'auto';
-            const cellWidth = (width) || 'auto';
-            const cellTextStyle = (textStyle) || {};
-            const cellBorderStyle = (borderStyle) || {};*/
-            //renderCell(i,item,cellWidth,height,cellTextStyle,cellBorderStyle)
+                return(
+                    <View key={i}>
+                        {renderCell(item,cellWidth,height,cellTextStyle,cellBorderStyle)}
+                    </View>
+                )
             //return <Cell key={i} data={item} width={width} height={height} textStyle={textStyle} {...props} />;
-            <Text key={i} style={[{backgroundColor: 'black', width: 100}]}>{item}</Text>
+            //<Text key={i} style={[{backgroundColor: 'black', width: 100}]}>{item}</Text>
             })}
         </View>
         ) : null;
     }
 
-    const renderCell = (key, data, width, height, textStyle, borderStyle) => {
+    const renderRow = () => {
+        const { tableHead, headStyle, widthArr, textStyle, borderStyle } = props;
+        let width = widthArr ? sum(widthArr) : 'auto';
+        const height = 'auto';
+        const wth = (widthArr && widthArr[i]) || 'auto';
+        const cellTextStyle = (textStyle) || {};
+        const cellBorderStyle = (borderStyle) || {};
+
+        return tableHead ? (
+        <View style={[{ height: 'auto' }, width && { width }, styles.row, headStyle]}>
+            {tableHead.map((item, i) => {
+                return(
+                    <View key={i}>
+                        {renderCell(item,wth,height,cellTextStyle,cellBorderStyle)}
+                    </View>
+                )
+            //return <Cell key={i} data={item} width={wth} height={height} flex={flex} textStyle={textStyle} {...props} />;
+            })}
+        </View>
+        ) : null;
+
+    }
+
+    const renderCell = (data, width, height, textStyle, borderStyle) => {
 
         const textDom = React.isValidElement(data) ? (
         data
         ) : (
-        <Text style={[textStyle, styles.text]} {...props}>
+        <Text style={[textStyle, styles.text]}>
             {data}
         </Text>
         );
@@ -41,7 +68,6 @@ export const KoroTable = (props) => {
 
         return (
         <View
-            key={key}
             style={[
             {
                 borderTopWidth,
@@ -51,7 +77,7 @@ export const KoroTable = (props) => {
             styles.cell,
             width && { width },
             height && { height },
-            !width && !height && { flex: 1 }
+            { flex: 1 }
             ]}
         >
             {textDom}
@@ -61,6 +87,8 @@ export const KoroTable = (props) => {
 
     
     const  cols  = renderCol()
+    const row = renderRow()
+    console.log(renderRow())
     return (
     <View
         style={[
@@ -72,7 +100,9 @@ export const KoroTable = (props) => {
         }
         ]}
     >
+        
         {cols}
+        {row}
     </View>
     );
 
@@ -82,5 +112,9 @@ export const KoroTable = (props) => {
 
 const styles = StyleSheet.create({
     cell: { justifyContent: 'center' },
-    text: { backgroundColor: 'red' }
+    text: { backgroundColor: 'transparent' },
+    row: {
+        flexDirection: 'row',
+        overflow: 'hidden'
+      }
   });

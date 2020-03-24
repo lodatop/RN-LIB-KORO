@@ -6,23 +6,23 @@ export const KoroInput = (props) => {
     const [value, setValue] = useState();
     const [focused, setFocused] = useState(false);
 
-    handleOnSelect = (value) => {
+    const handleOnSelect = (value) => {
         setValue( value )
     }
 
     const { onChange, style, label, disabled, placeholderTextColor } = props;
     
 
-    handleChange = (text) => {
+    const handleChange = (text) => {
         setValue(text)
         onChange(text)
     }
 
-    handleBlur = () => {
+    const handleBlur = () => {
       setFocused(false)
     }
 
-    handleFocus = () => {
+    const handleFocus = () => {
       setFocused(true)
     }
 

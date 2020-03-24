@@ -16,6 +16,7 @@ import { KoroCard } from './components/Card';
 import { KoroTable } from './components/Table';
 import { KoroToast } from './components/Toast';
 import { KoroCollapse } from './components/Collapse';
+import { KoroForm } from './components/Form';
 
 export default function App() {
   const [disabled, setDisabled] = useState(false)
@@ -24,6 +25,7 @@ export default function App() {
   const [progressActive, setProgressActive] = useState(false)
   const [ds, setDs] = useState(1)
   const [toast, setToast] = useState(null);
+  const [form, setForm] = useState({})
 
   const tryToast = () => {
     setToast(<KoroToast 
@@ -124,6 +126,9 @@ export default function App() {
       <KoroCollapse title='hey gurl'>
         <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
       </KoroCollapse>
+      <KoroForm inputList={['name', 'username']} onChanges={(content) => setForm(content)} />
+      <KoroButton title="alert form content" onPress={() => alert(JSON.stringify(form))} buttonStyle={{backgroundColor: 'pink', minWidth: 200}} textStyle={{color: 'white'}} />
+
     </ScrollView>
     
       {toast}

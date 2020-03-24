@@ -26,7 +26,6 @@ export const KoroCollapse = (props) => {
         let initialValue    = expanded? maxHeight + minHeight : minHeight,
             finalValue      = expanded? minHeight : maxHeight + minHeight;
 
-        console.log(animation)
         setExpanded(!expanded)
         icon = expanded? icons['left'] : icons['right'];
 

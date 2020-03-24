@@ -26,14 +26,14 @@ export default function App() {
 
   const tryToast = () => {
     setToast(<KoroToast 
-        time={4000} 
+        time={3000} 
         title='im a toast'
-        position='top'
+        position='bottom'
         style={{textTransform: 'uppercase', color: 'black'}}
         />)
     setTimeout(()=>{
       setToast(null)
-    }, 4050)
+    }, 4100)
   }
 
   const showProgress = () => {
@@ -64,6 +64,7 @@ export default function App() {
           <KoroButton title="Open Modal" onPress={()=> setModalOpen(true)} style={{width: 300}}/>
           <KoroIcon icon="alert"/>
           <KoroModal visible={modalOpen} borderStyle={{padding: 20}} onRequestClose={()=> setModalOpen(false)}>
+            <KoroToast />
             <KoroButton 
               title='Button'
               icon="alert"
@@ -115,32 +116,11 @@ export default function App() {
           <KoroSteps 
             steps={['im step number 1', 'im step number 2', 'im step number 3', 'im step number 4']}
           />
-        <Button title="Call Alert" onPress={()=> setCallAlert(true)} color="red" style={{width: 300}}/>
-        <Button title="Load Progress" onPress={() => showProgress()} color='pink'/>
-        <KoroBadge value={1} showValue={true} badgeSize={25}>
-          <Text>Badge</Text>
-        </KoroBadge>
-        <KoroProgress visible={progressActive}/>
-        <KoroChip
-          tags={[{title: 'Chip component', id: 1}, {title: 'Chip component 2', id: 2},
-                {title: 'Chip 3', id: 3}, {title: 'Francheesssscoooooo fiauuuuu', id: 4 }]}
-          onDelete={(id) => Alert.alert('deleted ' + id)}
-          />
-        <KoroSelect options={[1,2,3]} />
-        <KoroDropdown onSelect={(val) => setDs(val)} options={[1,2,3]} />
-        <Button title="alert selected value" onPress={() => alert(ds)} color='pink'/>
-        <KoroInput label='pipi' onChange={(text) => setDs(text)} />
-        <KoroCard header={Header} footer={Footer}>
-        <Text>
-          hey bitch
-        </Text>
-      </KoroCard>
-        <KoroSteps 
-          steps={['im step number 1', 'im step number 2', 'im step number 3', 'im step number 4']}
-        />
+          <KoroButton title='Try toast' onPress={tryToast}/>
+          {/* <KoroTable tableTitle={tableTitle} /> */}
       </View>
-      <KoroTable tableTitle={tableTitle} />
     </ScrollView>
+      {toast}
     </View>
   );
 }

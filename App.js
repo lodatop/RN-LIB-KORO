@@ -15,6 +15,7 @@ import { KoroSteps } from './components/Steps';
 import { KoroCard } from './components/Card';
 import { KoroTable } from './components/Table';
 import { KoroToast } from './components/Toast';
+import { KoroCollapse } from './components/Collapse';
 
 export default function App() {
   const [disabled, setDisabled] = useState(false)
@@ -120,7 +121,11 @@ export default function App() {
           {/* <KoroTable tableTitle={tableTitle} /> */}
       </View>
       <KoroTable borderStyle={{borderWidth: 1}} tableTitle={tableTitle} tableHead={tableTitle} />
+      <KoroCollapse title='hey gurl'>
+        <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+      </KoroCollapse>
     </ScrollView>
+    
       {toast}
     </View>
   );
@@ -134,4 +139,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  collapseContainer: {
+    flex            : 1,
+    backgroundColor : '#f4f7f9',
+    paddingTop      : 30
+  }
 });

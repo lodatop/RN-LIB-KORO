@@ -5,12 +5,12 @@ import { KoroButton } from './components/Button'
 import { KoroModal } from './components/Modal';
 import { KoroIcon } from './components/Icon';
 import { KoroAlert } from './components/Alert';
-import { KoroProgress } from './components/Progress';
 import { KoroDropdown } from './components/Dropdown';
 import { KoroSelect } from './components/Select'
 import { KoroProgress } from './components/Progress'
 import { KoroBadge } from './components/Badge';
 import { KoroChip } from './components/Chip';
+import { KoroInput } from './components/Input';
 
 export default function App() {
   const [disabled, setDisabled] = useState(false)
@@ -71,6 +71,7 @@ export default function App() {
       <KoroSelect options={[1,2,3]} />
       <KoroDropdown onSelect={(val) => setDs(val)} options={[1,2,3]} />
       <Button title="alert select value" onPress={() => alert(ds)} color='pink'/>
+      <KoroInput label='pipi' onChange={(text) => setDs(text)} />
     </View>
   );
 }

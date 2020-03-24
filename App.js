@@ -26,14 +26,14 @@ export default function App() {
 
   const tryToast = () => {
     setToast(<KoroToast 
-        time={3000} 
+        time={1000} 
         title='im a toast'
         position='bottom'
         style={{textTransform: 'uppercase', color: 'black'}}
         />)
     setTimeout(()=>{
       setToast(null)
-    }, 4100)
+    }, 2000)
   }
 
   const showProgress = () => {

@@ -3,7 +3,7 @@ import { View, Image, StyleSheet } from 'react-native';
 
 export const KoroIcon = (props) =>{
 
-    let { icon = 'none', size = 'small', onPress, style, resizeMode } = props
+    let { icon = 'none', size = 'small', style, resizeMode } = props
     let iconSize = {}
     let icons = {
         alert: {
@@ -14,7 +14,13 @@ export const KoroIcon = (props) =>{
         },
         clearWhite: {
             source: require('../assets/koro_clear_white.png')
-        }
+        },
+        rightArrow: {
+            source: require('../assets/koro_rightArrow.png')
+        },
+        leftArrow: {
+            source: require('../assets/koro_leftArrow.png')
+        },
     }
 
     let finalIcon = null;

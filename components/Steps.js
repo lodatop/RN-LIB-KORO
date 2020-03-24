@@ -150,12 +150,14 @@ const styles = StyleSheet.create({
         width: '90%',
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     middle: {
         width: '100%',
+        minHeight: 100,
         flexDirection: 'row',
         alignItems: 'center',
+        marginBottom: 10,
         justifyContent: 'center'
     },
     bottom: {

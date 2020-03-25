@@ -17,10 +17,12 @@ import { KoroTable } from './components/Table';
 import { KoroToast } from './components/Toast';
 import { KoroCollapse } from './components/Collapse';
 import { KoroForm } from './components/Form';
+import { KoroPopover } from './components/Popover';
 
 export default function App() {
   const [disabled, setDisabled] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
+  const [popOpen, setPopOpen] = useState(false)
   const [callAlert, setCallAlert] = useState(false)
   const [progressActive, setProgressActive] = useState(false)
   const [ds, setDs] = useState(1)
@@ -127,7 +129,9 @@ export default function App() {
       </KoroCollapse>
       <KoroForm inputList={['name', 'username']} onChanges={(content) => setForm(content)} />
       <KoroButton title="alert form content" onPress={() => alert(JSON.stringify(form))} buttonStyle={{backgroundColor: 'pink', minWidth: 200}} textStyle={{color: 'white'}} />
-
+      <KoroPopover message="hi" visible={popOpen} borderStyle={{padding: 20}} onRequestClose={()=> setPopOpen(false)}>
+          <KoroButton title="Open Modal" onPress={()=> setPopOpen(true)} style={{width: 300}}/>
+      </KoroPopover >
     </ScrollView>
     
       {toast}

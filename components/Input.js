@@ -8,10 +8,7 @@ export const KoroInput = (props) => {
     
     const [inputValue, setInputValue] = useState(value);
     const [focused, setFocused] = useState(false);
-
-
     
-
     const handleChange = (text) => {
         setInputValue(text)
         onChange(text)

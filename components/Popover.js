@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, Modal, Dimensions, ScrollView } from 'react-native';
+import { View, StyleSheet, Modal, Dimensions, ScrollView, Text } from 'react-native';
 
 export const KoroPopover = (props) =>{
 
-    let { onRequestClose, animationType, visible, borderStyle, contentStyle, transparent = true } = props;
+    let { onRequestClose, animationType, visible, borderStyle, contentStyle, transparent = true, message } = props;
     if (!animationType) animationType = 'slide';
 
     const onRequestCloseHandler = () => {
@@ -12,15 +12,14 @@ export const KoroPopover = (props) =>{
 
     return (
         <View style={[styles.backdrop]} visible={visible}>
-            <ScrollView>
-                <Modal {...props} transparent={transparent} animationType={animationType} visible={visible} onRequestClose={onRequestCloseHandler} animationType={animationType}>
-                    <View style={{...styles.borderStyle, ...borderStyle}}>
-                        <View style={{...styles.contentStyle, ...contentStyle}}>
-                            {props.children}
-                        </View>
+            <Modal {...props} transparent={transparent} animationType={animationType} visible={visible} onRequestClose={onRequestCloseHandler} animationType={animationType}>
+                <View style={{...styles.borderStyle, ...borderStyle}}>
+                    <View style={{...styles.contentStyle, ...contentStyle}}>
+                        <Text>{message}</Text>
+                        {props.children}
                     </View>
-                </Modal>
-            </ScrollView>
+                </View>
+            </Modal>
         </View>
     )
 }

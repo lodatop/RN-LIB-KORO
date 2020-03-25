@@ -23,6 +23,12 @@ export const KoroIcon = (props) =>{
         },
         downArrow: {
             source: require('../assets/koro_downArrow.png')
+        },
+        check: {
+            source: require('../assets/koro_check.png')
+        },
+        checkWhite: {
+            source: require('../assets/koro_check_white.png')
         }
     }
 

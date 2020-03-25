@@ -13,11 +13,11 @@ import { KoroChip } from './components/Chip';
 import { KoroInput } from './components/Input';
 import { KoroSteps } from './components/Steps';
 import { KoroCard } from './components/Card';
-import { KoroTable } from './components/Table';
 import { KoroToast } from './components/Toast';
 import { KoroCollapse } from './components/Collapse';
 import { KoroForm } from './components/Form';
 import { KoroPopover } from './components/Popover';
+import { KoroTable } from './components/Table';
 
 export default function App() {
   const [disabled, setDisabled] = useState(false)
@@ -59,6 +59,8 @@ export default function App() {
   );
 
   const tableTitle = ['Title', 'Title2', 'Title3', 'Title4'];
+  
+  const tableData = [['data', 'data2', 'data3', 'data4'], ['data5', 'data6', 'data7', 'data8']];
   
 
   return (
@@ -123,7 +125,6 @@ export default function App() {
           />
           <KoroButton title='Try toast' onPress={tryToast}/>
       </View>
-      <KoroTable borderStyle={{borderWidth: 1}} tableTitle={tableTitle} tableHead={tableTitle} />
       <KoroCollapse title="This is a collapse">
         <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
       </KoroCollapse>
@@ -132,6 +133,7 @@ export default function App() {
       <KoroPopover message="hi" visible={popOpen} borderStyle={{padding: 20}} onRequestClose={()=> setPopOpen(false)}>
           <KoroButton title="Open Modal" onPress={()=> setPopOpen(true)} style={{width: 300}}/>
       </KoroPopover >
+      <KoroTable  borderStyle={{borderWidth: 1}} widthArr={[50,50,50,50]} headStyle={[{ backgroundColor: 'gray'}]} heightArr={[28,28]} tableData={tableData} tableHead={tableTitle} />
     </ScrollView>
     
       {toast}

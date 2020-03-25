@@ -3,54 +3,72 @@ import { View, StyleSheet, Text } from 'react-native';
 
 export const KoroTable = (props) => {
 
-    const { borderStyle } = props;
+    const { borderStyle, height, widthArr } = props;
     const borderLeftWidth = (borderStyle && borderStyle.borderWidth) || 0;
     const borderBottomWidth = borderLeftWidth;
     const borderColor = (borderStyle && borderStyle.borderColor) || '#000';
 
-    const renderCol = () => {
-        const { tableTitle, colStyle, heightArr, width, textStyle, borderStyle } = props;
-        const height = (heightArr && heightArr[i]) || 'auto';
-        const cellWidth = (width) || 'auto';
-        const cellTextStyle = (textStyle) || {};
-        const cellBorderStyle = (borderStyle) || {};
-
-        return tableTitle ? (
-        <View style={[(colStyle && colStyle.width) ? { width: colStyle.width } : { flex: 1 }, colStyle]}>
-            {tableTitle.map((item, i) => {
-                return(
-                    <View key={i}>
-                        {renderCell(item,cellWidth,height,cellTextStyle,cellBorderStyle)}
-                    </View>
-                )
-            //return <Cell key={i} data={item} width={width} height={height} textStyle={textStyle} {...props} />;
-            //<Text key={i} style={[{backgroundColor: 'black', width: 100}]}>{item}</Text>
-            })}
-        </View>
-        ) : null;
+    const sum = (arr) => {
+        return arr.reduce((acc, n) => acc + n, 0)
     }
 
-    const renderRow = () => {
-        const { tableHead, headStyle, widthArr, textStyle, borderStyle } = props;
-        let width = widthArr ? sum(widthArr) : 'auto';
-        const height = 'auto';
-        const wth = (widthArr && widthArr[i]) || 'auto';
+    const renderHead = () => {
+        const { tableHead, headStyle, textStyle, borderStyle } = props;
+        let width = widthArr ? sum(widthArr) : 0;
+        const cellHeight = height || 'auto';
         const cellTextStyle = (textStyle) || {};
         const cellBorderStyle = (borderStyle) || {};
 
         return tableHead ? (
         <View style={[{ height: 'auto' }, width && { width }, styles.row, headStyle]}>
             {tableHead.map((item, i) => {
+                const wth = (widthArr && widthArr[i]);
                 return(
                     <View key={i}>
-                        {renderCell(item,wth,height,cellTextStyle,cellBorderStyle)}
+                        {renderCell(item,wth,cellHeight,cellTextStyle,cellBorderStyle)}
                     </View>
                 )
-            //return <Cell key={i} data={item} width={wth} height={height} flex={flex} textStyle={textStyle} {...props} />;
             })}
         </View>
         ) : null;
 
+    }
+
+    const renderRow = (row) => {
+        const { textStyle, borderStyle } = props;
+        const cellHeight = height || 'auto';
+        const width = widthArr ? sum(widthArr) : 0;
+        const cellTextStyle = (textStyle) || {};
+        const cellBorderStyle = (borderStyle) || {};
+        return row ? (
+        <View style={[{ height: 'auto' }, width && { width }, styles.row]}>
+            {row.map((item, i) => {
+                const wth = (widthArr && widthArr[i]);
+                return(
+                    <View key={i}>
+                        {renderCell(item,wth,cellHeight,cellTextStyle,cellBorderStyle)}
+                    </View>
+                )
+            })}
+        </View>
+        ) : null;
+    }
+
+    const renderTableData = () => {
+        const { tableData } = props;
+       
+
+        return tableData ? (
+        <View style={[{ height: 'auto'}]}>
+            {tableData.map((item, i) => {
+                return(
+                    <View key={i}>
+                        {renderRow(item)}
+                    </View>
+                )
+            })}
+        </View>
+        ) : null;
     }
 
     const renderCell = (data, width, height, textStyle, borderStyle) => {
@@ -69,15 +87,16 @@ export const KoroTable = (props) => {
         return (
         <View
             style={[
+                widthArr?
             {
                 borderTopWidth,
                 borderRightWidth,
                 borderColor
-            },
+            } : {},
             styles.cell,
             width && { width },
             height && { height },
-            { flex: 1 }
+            !width && { flex: 1 }
             ]}
         >
             {textDom}
@@ -86,22 +105,22 @@ export const KoroTable = (props) => {
   }
 
     
-    const  cols  = renderCol()
-    const row = renderRow()
+    const  head  = renderHead()
+    const rows = renderTableData()
     return (
     <View
         style={[
-        props.style,
+        props.style, widthArr ?
         {
             borderLeftWidth,
             borderBottomWidth,
             borderColor
-        }
+        } : {},
+        styles.table
         ]}
     >
-        
-        {row}
-        {cols}
+        {head}
+        {rows}
     </View>
     );
 
@@ -110,10 +129,17 @@ export const KoroTable = (props) => {
 
 
 const styles = StyleSheet.create({
+    table: {
+        marginVertical: 10,
+        marginHorizontal: 'auto',
+        justifyContent: 'center',
+        flex: 1,
+    },
     cell: { justifyContent: 'center' },
     text: { backgroundColor: 'transparent' },
     row: {
         flexDirection: 'row',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        justifyContent: 'space-around',
       }
   });

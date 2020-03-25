@@ -125,7 +125,7 @@ export default function App() {
       <KoroCollapse title="This is a collapse">
         <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
       </KoroCollapse>
-      <KoroForm inputList={['name', 'username']} onChanges={(content) => setForm(content)} />
+      <KoroForm inputStyle={{}} inputList={['name', 'username']} onChanges={(content) => setForm(content)} />
       <KoroButton title="alert form content" onPress={() => alert(JSON.stringify(form))} buttonStyle={{backgroundColor: 'pink', minWidth: 200}} textStyle={{color: 'white'}} />
 
     </ScrollView>

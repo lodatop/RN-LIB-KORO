@@ -28,7 +28,7 @@ export const KoroCollapse = (props) => {
             finalValue      = expanded? minHeight : maxHeight + minHeight;
 
         setExpanded(!expanded)
-        icon = expanded? icons['left'] : icons['down'];
+        icon = expanded? icons['down'] : icons['left'];
 
         animation.setValue(initialValue);
         Animated.spring( 
@@ -48,7 +48,7 @@ export const KoroCollapse = (props) => {
         setMinHeight(event.nativeEvent.layout.height)
     }
 
-    let icon = expanded? icons['left'] : icons['down'];
+    let icon = expanded? icons['down'] : icons['left'];
 
     return(
         <Animated.View style={{...styles.container, height: animation}} >

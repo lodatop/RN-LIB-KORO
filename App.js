@@ -130,8 +130,12 @@ export default function App() {
       </KoroCollapse>
       <KoroForm inputStyle={{}} inputList={['name', 'username']} onChanges={(content) => setForm(content)} />
       <KoroButton title="alert form content" onPress={() => alert(JSON.stringify(form))} buttonStyle={{backgroundColor: 'pink', minWidth: 200}} textStyle={{color: 'white'}} />
-      <KoroPopover message="hi" visible={popOpen} borderStyle={{padding: 20}} onRequestClose={()=> setPopOpen(false)}>
-          <KoroButton title="Open Modal" onPress={()=> setPopOpen(true)} style={{width: 300}}/>
+      <KoroPopover
+        visible={popOpen}
+        title='Popover Title'
+        content='Popover content lorem ipsum no se'
+        >
+          <KoroButton title="Click for Popover" onPress={()=> setPopOpen(!popOpen)} style={{width: 300}}/>
       </KoroPopover >
       <KoroTable  borderStyle={{borderWidth: 1}} widthArr={[50,50,50,50]} headStyle={[{ backgroundColor: 'gray'}]} heightArr={[28,28]} tableData={tableData} tableHead={tableTitle} />
     </ScrollView>

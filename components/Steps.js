@@ -7,16 +7,14 @@ import { KoroAlert } from './Alert';
 export const KoroSteps = (props) => {
     const [steps, setSteps] = useState(null)
     const [error, setError] = useState(false)
+    const [onDone, setOnDone] = useState(props.onDone)
     const [actualStep, setActualStep] = useState(1)
     const [backDisabled, setBackDisabled] = useState(true)
     const [continueDisabled, setContinueDisabled] = useState(false)
     const [selectedStyle, setSelectedStyle] = useState(null)
 
-    // useEffect(()=>{
-
-    // },[])
-
     useEffect(()=>{setSteps(props.steps)}, [props.steps])
+    useEffect(()=>{setOnDone(props.onDone)}, [props.onDone])
     useEffect(()=>{setActualStep(actualStep)}, [actualStep])
 
     const goFoward = () =>{
@@ -105,7 +103,7 @@ export const KoroSteps = (props) => {
                 <KoroButton disabled={continueDisabled} title='Continue' icon="rightArrow" iconSize={25}
                     onPress={() => goFoward()}
                     buttonStyle={{...styles.buttons, paddingRight: 0}}/>
-                <KoroButton disabled={!continueDisabled} title='Done' buttonStyle={{...styles.buttons, paddingVertical: 11.5}}/>
+                <KoroButton disabled={!continueDisabled} title='Done' buttonStyle={{...styles.buttons, paddingVertical: 11.5}} onPress={onDone}/>
             </View>
         </View>
         )
@@ -122,7 +120,6 @@ export const KoroSteps = (props) => {
                 <Text>{content}</Text>
             </View>
             <View style={styles.bottom}>
-                {/* <Text>Im the bottom</Text> */}
                 <KoroButton disabled={backDisabled} title='Go Back' icon="leftArrow" iconPosition="start" iconSize={25} 
                     onPress={() => goBack()}
                     buttonStyle={{...styles.buttons, paddingLeft: 0}}/>

@@ -1,22 +1,35 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
+  "name": "react-native-koro-lib",
+  "version": "1.0.0",
+  "main": "./index.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "build": "webpack"
   },
   "dependencies": {
+    "@babel/runtime": "^7.9.2",
     "expo": "~36.0.0",
+    "path": "^0.12.7",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-expo": "~8.0.0",
-    "@babel/core": "^7.0.0"
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   },
   "private": true
 }

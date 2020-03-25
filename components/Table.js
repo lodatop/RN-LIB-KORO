@@ -20,7 +20,7 @@ export const KoroTable = (props) => {
         const cellBorderStyle = (borderStyle) || {};
 
         return tableHead ? (
-        <View style={[{ height: 'auto' }, width && { width }, styles.row, headStyle]}>
+        <View style={[{ height: 'auto' }, width && { width }, widthArr? {}: styles.auto, styles.row, headStyle]}>
             {tableHead.map((item, i) => {
                 const wth = (widthArr && widthArr[i]);
                 return(
@@ -59,7 +59,12 @@ export const KoroTable = (props) => {
        
 
         return tableData ? (
-        <View style={[{ height: 'auto'}]}>
+        <View style={[{ height: 'auto'}, widthArr ?
+            {
+                borderLeftWidth,
+                borderBottomWidth,
+                borderColor
+            } : styles.auto]}>
             {tableData.map((item, i) => {
                 return(
                     <View key={i}>
@@ -110,12 +115,6 @@ export const KoroTable = (props) => {
     return (
     <View
         style={[
-        props.style, widthArr ?
-        {
-            borderLeftWidth,
-            borderBottomWidth,
-            borderColor
-        } : {},
         styles.table
         ]}
     >
@@ -131,9 +130,13 @@ export const KoroTable = (props) => {
 const styles = StyleSheet.create({
     table: {
         marginVertical: 10,
-        marginHorizontal: 'auto',
-        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    auto: {
+        marginHorizontal: 30,
+        justifyContent: "space-around",
         flex: 1,
+        alignSelf: 'stretch'
     },
     cell: { justifyContent: 'center' },
     text: { backgroundColor: 'transparent' },

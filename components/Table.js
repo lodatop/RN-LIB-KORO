@@ -100,8 +100,8 @@ export const KoroTable = (props) => {
         ]}
     >
         
-        {cols}
         {row}
+        {cols}
     </View>
     );
 

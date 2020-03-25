@@ -4,7 +4,7 @@ import { KoroInput } from './Input';
 
 export const KoroForm = (props) => {
 
-    const {onChanges} = props;
+    const {onChanges, inputStyle} = props;
 
     const [content, setContent] = useState([]);
     
@@ -21,10 +21,10 @@ export const KoroForm = (props) => {
         const { inputList } = props;
 
         return inputList ? (
-            <View style={[styles.input]}>
+            <View style={{...styles.input}}>
                 {inputList.map((item, i) => {
                     return(
-                            <KoroInput key={i} label={item} onChange={(text) => { updateItem(i, item, text) }}/>
+                            <KoroInput style={{...inputStyle}} key={i} label={item} onChange={(text) => { updateItem(i, item, text) }}/>
                     )
                 })}
             </View>
@@ -39,6 +39,6 @@ export const KoroForm = (props) => {
 
 const styles = StyleSheet.create({
     input: {
-        marginVertical: 5
+        marginVertical: 5,
     }
   });

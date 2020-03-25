@@ -1,7 +1,7 @@
 {
   "name": "react-native-koro-lib",
   "version": "1.0.0",
-  "main": "./index.js",
+  "main": "index.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -19,6 +19,11 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
     "react-native-web": "~0.11.7"
   },
+  "repository": {
+    "url": "https://github.com/Wisammozalbat/rn-koro-lib"
+  },
+  "author": "Wisam Mozalbat and Paolo Lodato",
+  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",

@@ -76,7 +76,7 @@ export const KoroButton = (props) =>{
         button = (
             <TouchableWithoutFeedback {...props} onPressIn={onPressInHandler} onPressOut={onPressOutHandler} 
                 onPress={onPress} onLongPress={onLongPress} disabled={disabled}>
-                <View style={{...styles.container, ...buttonStyle, ...disabledStyle}}>
+                <View style={{...styles.container, ...buttonStyle, ...disabledStyle, backgroundColor: "red"}}>
                     <View style={{...pressedStyle}}></View>
                     <Text style={{ ...styles.text, ...textStyle }}>{ title }</Text>
                 </View >

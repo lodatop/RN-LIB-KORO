@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
 import { KoroIcon } from './Icon';
 
 export const KoroChip = (props) => {
 
     let { 
-        tags = [], 
+        tags = [],
         pressable = false, 
         deletable = true,
         textStyle,
@@ -16,47 +16,51 @@ export const KoroChip = (props) => {
         onPress, 
         iconColor = 'black'
     } = props
+
     let icon = iconColor === 'white' ? 'clearWhite' : 'clear'
+    const [tagsArray, setTagsArray] = useState(tags)
+    useEffect(()=>{setTagsArray(props.tags)},[props.tags])
 
     let chips = null;
-
-    if(deletable && !pressable){
-        chips = (
-            tags.map(chip => {
-                return (
-                    <View key={chip.id} style={{ ...styles.chip, ...chipStyle}}>
-                        <Text style={{...styles.title, ...textStyle}}>{chip.title}</Text>
-                        <TouchableOpacity onPress={() => onDelete(chip.id)}>
-                            <View style={{...styles.clear, clearStyle}}>
-                                <KoroIcon icon={icon} size={'small'}/>
+    if(tagsArray.length > 0){
+        if(deletable && !pressable){
+            chips = (
+                tagsArray.map(chip => {
+                    return (
+                        <View key={chip.id} style={{ ...styles.chip, ...chipStyle}}>
+                            <Text style={{...styles.title, ...textStyle}}>{chip.title}</Text>
+                            <TouchableOpacity onPress={() => onDelete(chip.id)}>
+                                <View style={{...styles.clear, clearStyle}}>
+                                    <KoroIcon icon={icon} size={'small'}/>
+                                </View>
+                            </TouchableOpacity>
+                        </View> 
+                    )
+                })
+            )
+        } else if (pressable){
+            chips = (
+                tagsArray.map(chip => {
+                    return (
+                        <TouchableOpacity onPress={onPress}>
+                            <View key={chip.id} style={{ ...styles.chip, ...chipStyle}}>
+                                <Text style={styles.title}>{chip.title}</Text>
                             </View>
                         </TouchableOpacity>
-                    </View> 
-                )
-            })
-        )
-    } else if (pressable){
-        chips = (
-            tags.map(chip => {
-                return (
-                    <TouchableOpacity onPress={onPress}>
+                    )
+                })
+            )
+        } else {
+            chips = (
+                tagsArray.map(chip => {
+                    return (
                         <View key={chip.id} style={{ ...styles.chip, ...chipStyle}}>
                             <Text style={styles.title}>{chip.title}</Text>
                         </View>
-                    </TouchableOpacity>
-                )
-            })
-        )
-    } else {
-        chips = (
-            tags.map(chip => {
-                return (
-                    <View key={chip.id} style={{ ...styles.chip, ...chipStyle}}>
-                        <Text style={styles.title}>{chip.title}</Text>
-                    </View>
-                )
-            })
-        )
+                    )
+                })
+            )
+        }
     }
 
     return (

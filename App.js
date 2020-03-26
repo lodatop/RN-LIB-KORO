@@ -29,6 +29,24 @@ export default function App() {
   const [toast, setToast] = useState(null);
   const [form, setForm] = useState({})
 
+    const [value, setValue] = useState('')
+    const [chips, setChips] = useState([])
+    const [counter, setCounter] = useState(0)
+
+    const addChip = () => {
+        setChips([...chips, {title: value, id: counter}])
+        setCounter(counter+1);
+        setValue('')
+    }
+
+    const removeChip = (id) => {
+        setChips(
+          chips.filter(
+            chip => chip.id !== id
+        )
+        )
+    }
+
   const tryToast = () => {
     setToast(<KoroToast 
         time={1000} 
@@ -104,11 +122,15 @@ export default function App() {
             <Text>Badge</Text>
           </KoroBadge>
           <KoroProgress visible={progressActive}/>
-          <KoroChip
-            tags={[{title: 'Chip component', id: 1}, {title: 'Chip component 2', id: 2},
-                  {title: 'Chip 3', id: 3}, {title: 'Francheesssscoooooo fiauuuuu', id: 4 }]}
-            onDelete={(id) => Alert.alert('deleted ' + id)}
-            />
+          <View>
+                    <Text>Enter values in the input to add a chip</Text>
+                    <KoroInput label='select a name please' value={value} onChange={(value) => setValue(value)} />
+                    <KoroButton title='Add' onPress={addChip}/>
+                    <KoroChip
+                        tags={chips}
+                        onDelete={(id) => removeChip(id)}
+                        />
+                </View>
             <Text>Select</Text>
           <KoroSelect options={['one','two','three']} onSelect={(selection) => Alert.alert("value selected: " + selection)}/>
           <Text>Dropdown</Text>

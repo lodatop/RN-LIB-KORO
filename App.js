@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, Button, Text, View, Alert, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Alert, ScrollView } from 'react-native';
 
 import { KoroButton } from './components/Button'
 import { KoroModal } from './components/Modal';
@@ -69,7 +69,7 @@ export default function App() {
         <View style={styles.container}>
           <Text>Open up App.js to start working on your app!</Text>
           <KoroButton title="Open Modal" onPress={()=> setModalOpen(true)} style={{width: 300}}/>
-          <KoroIcon icon="downArrow"/>
+          <View style={{backgroundColor: 'grey'}}><KoroIcon icon="clearWhite"/></View>
           <KoroModal visible={modalOpen} borderStyle={{padding: 20}} onRequestClose={()=> setModalOpen(false)}>
             <KoroToast />
             <KoroButton 
@@ -110,9 +110,9 @@ export default function App() {
             onDelete={(id) => Alert.alert('deleted ' + id)}
             />
             <Text>Select</Text>
-          <KoroSelect options={[1,2,3]} onSelect={(selection) => Alert.alert("value selected: " + selection)}/>
+          <KoroSelect options={['one','two','three']} onSelect={(selection) => Alert.alert("value selected: " + selection)}/>
           <Text>Dropdown</Text>
-          <KoroDropdown onSelect={(val) => setDs(val)} options={[1,2,3]} />
+          <KoroDropdown onSelect={(val) => setDs(val)} options={['one','two','three']} />
           <KoroButton title="alert selected value" onPress={() => alert(ds)} buttonStyle={{backgroundColor: 'pink', minWidth: 200}} textStyle={{color: 'white'}} />
           <KoroInput label='select a name please' onChange={(text) => setDs(text)} />
           <KoroCard header={Header} footer={Footer}>
@@ -121,7 +121,9 @@ export default function App() {
             </Text>
           </KoroCard>
           <KoroSteps 
-            steps={['im step number 1', 'im step number 2', 'im step number 3', 'im step number 4']}
+            steps={['im step number 1', 'im step number 2', 'im step number 3', 'im step number 4', 'im step number 5']}
+            type='circles'
+            onDone={() => Alert.alert('Done steps')}
           />
           <KoroButton title='Try toast' onPress={tryToast}/>
       </View>
@@ -159,3 +161,4 @@ const styles = StyleSheet.create({
     paddingTop      : 30
   }
 });
+

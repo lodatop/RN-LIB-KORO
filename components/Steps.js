@@ -94,8 +94,17 @@ export const KoroSteps = (props) => {
                 />
             )
         }
-    
+        let stepContent = null;
         if( steps ){
+            if(typeof(content) === "object"){
+                stepContent = (
+                    content
+                )
+            } else if (typeof(content) === "string"){
+                stepContent = (
+                    <Text>{content}</Text>
+                )
+            }
             stepsComponent = (
                 <Wrapper>
                     <View style={styles.top}>
@@ -104,7 +113,7 @@ export const KoroSteps = (props) => {
                         {stepsArray}
                     </View>
                     <View style={styles.middle}>
-                        <Text>{content}</Text>
+                        {stepContent}
                     </View>
                     <View style={styles.bottom}>
                         <KoroButton disabled={backDisabled} title='Go Back' icon="leftArrow" iconPosition="start" iconSize={25} 

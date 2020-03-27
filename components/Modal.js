@@ -3,7 +3,7 @@ import { View, StyleSheet, Modal } from 'react-native';
 
 export const KoroModal = (props) =>{
 
-    let { onRequestClose, animationType, visible, borderStyle, contentStyle } = props;
+    let { onRequestClose, animationType, visible, borderStyle, contentStyle, transparent = true } = props;
     if (!animationType) animationType = 'slide';
 
     const onRequestCloseHandler = () => {
@@ -11,7 +11,7 @@ export const KoroModal = (props) =>{
     }
 
     return (
-       <Modal {...props} visible={visible} animationType={animationType} onRequestClose={onRequestCloseHandler} animationType={animationType}>
+       <Modal {...props} transparent={transparent} visible={visible} animationType={animationType} onRequestClose={onRequestCloseHandler} animationType={animationType}>
             <View style={{...styles.borderStyle, ...borderStyle}}>
                 <View style={{...styles.contentStyle, ...contentStyle}}>
                     {props.children}
@@ -31,6 +31,8 @@ const styles = StyleSheet.create({
     contentStyle: {
         backgroundColor: 'white', 
         flex: 1,
-        padding: 15
+        padding: 15,
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 })
